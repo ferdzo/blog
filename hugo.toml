@@ -2,3 +2,14 @@ baseURL = 'https://blog.ferdzo.xyz'
 languageCode = 'en-us'
 title = "Andrej's blog"
 theme = 'archie'
+
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/ferdzo/"
+
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/f3rdz0/"
+
