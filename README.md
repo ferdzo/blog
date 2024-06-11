@@ -1,1 +1,2 @@
 Blog
+Powered by Hugo
