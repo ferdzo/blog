@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html><head lang="en">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Continous Deployment of software using Github Actions - Andrej&#39;s blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A couple of months ago, I wanted to seamlessly update the code of my small web app running on my server. I was tired of using SFTP or copying code over SSH to the terminal editor every time I update something as small as the shade of a color. So I started looking for something more DevOps like. Some software for CI (Continuous Integration), CD(Continuous Delivery) and CD (Continuous Deployment). Mostly for Continuous Delivery because I don&rsquo;t need integration considering I was doing the project alone." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Continous Deployment of software using Github Actions" />
+<meta property="og:description" content="A couple of months ago, I wanted to seamlessly update the code of my small web app running on my server. I was tired of using SFTP or copying code over SSH to the terminal editor every time I update something as small as the shade of a color. So I started looking for something more DevOps like. Some software for CI (Continuous Integration), CD(Continuous Delivery) and CD (Continuous Deployment). Mostly for Continuous Delivery because I don&rsquo;t need integration considering I was doing the project alone." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.ferdzo.xyz/posts/2022-09-11-github_actions/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-11T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Continous Deployment of software using Github Actions"/>
+<meta name="twitter:description" content="A couple of months ago, I wanted to seamlessly update the code of my small web app running on my server. I was tired of using SFTP or copying code over SSH to the terminal editor every time I update something as small as the shade of a color. So I started looking for something more DevOps like. Some software for CI (Continuous Integration), CD(Continuous Delivery) and CD (Continuous Deployment). Mostly for Continuous Delivery because I don&rsquo;t need integration considering I was doing the project alone."/>
+
+	
+        <link href="https://blog.ferdzo.xyz/css/fonts.2c2227b81b1970a03e760aa2e6121cd01f87c88586803cbb282aa224720a765f.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://blog.ferdzo.xyz/css/main.ac08a4c9714baa859217f92f051deb58df2938ec352b506df655005dcaf98cc0.css" />
+
+	
+	
+
+	
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://blog.ferdzo.xyz/">Andrej&#39;s blog</a>
+	</div>
+	<nav>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Continous Deployment of software using Github Actions</h1>
+			<div class="meta">Posted on Sep 11, 2022</div>
+		</div>
+		
+
+		<section class="body">
+			<p>A couple of months ago, I wanted to seamlessly update the code of my small web app running on my server. 
+I was tired of using SFTP or copying code over SSH to the terminal editor every time I update something as small as the shade of a color. </p>
+<p>So I started looking for something more DevOps like. Some software for CI (Continuous Integration), CD(Continuous Delivery) and CD (Continuous Deployment). Mostly for Continuous Delivery because I don&rsquo;t need integration considering I was doing the project alone. I looked into many solutions, such as CircleCI, GitLab CI/CD, Travis CI. They are all awesome tools, but they are not worth the hassle for small apps. They need to many configurations for something as simple as automatically downloading the new version from the git repository. Then I remembered the CI/CD platform Github made, Github Actions </p>
+<h3 id="github-actions">Github Actions</h3>
+<p>Github Actions is platform for CI/CD and has many more options. It&rsquo;s integrated to the GitHub &ldquo;ecosystem&rdquo; and we can easily connect it to our repositories, integrate it with GitHub Pilot to compile and make releases for us and much more. It&rsquo;s very simple to use, you create so-called Workflows for everything you need and attach them to your desired repositories. The Workflows are some type of YAML config files, you can make them yourself or use one already made. There are many available on the so-called Marketplace for  nearly every possible job you need, and you don&rsquo;t have to bother much.</p>
+<p>The way I&rsquo;ve done this is very simple, Github Actions are called every time there is git push to the repository. After that, Github Actions run the workflow, in this case a simple SSH login and running git pull to the master/main branch. This is the simplest way, it&rsquo;s the easiest, but it is not secure, nor very smart to do this. But for my case, a simple web app, still in development, without any need of security or stability whatsoever. </p>
+<p>Now let&rsquo;s get started on how to do this.</p>
+<p>First, we make a Github repository with our code, if we don&rsquo;t already have. After that, we go to the <em><strong>Actions</strong></em> tab in our repository, and we press on <em><strong>New Workflow</strong></em>. Then we click on <em><strong>set up a workflow ourself</strong></em>. Next we get a page with an editor, where we write our Workflow file. The Workflow file is written in YAML. For those who don&rsquo;t know, YAML is a data-serialization language like XML and JSON, and mostly used for configuration files. Now let&rsquo;s get started with configuring our Workflow file. This is the code we need:</p>
+<pre tabindex="0"><code>name: remote ssh command
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd folder/
+          git pull origin main
+</code></pre><p>Here we have a simple workflow code. In the code, we connect to a host, and run git pull. The values for the host, username and other sensitive information is stored in the repository secrets. Repository secrets is a neat feature. It allows us to store sensitive information such as usernames, host addresses and passwords, without having them in our files. When the script is executed, they are automatically inserted. Now we need set up the Environment secrets. We go to the repository <em><strong>Settings</strong></em>, <em><strong>Secrets</strong></em>, <em><strong>Actions</strong></em> and we click on the <em><strong>New repository secret</strong></em>. In here, we need four secret variables, host, username, key (the SSH private key for the server) and the SSH port. Now in the script section of the file we put our simple script, in this place I change the folder to the repo folder and then run git pull in there. But this can be used for anything we want, any command can be run from here, so we are not limited. Now all we have to do is press <em><strong>Start commit</strong></em>. After this step, the Workflow file is commited to the repository and it will instantly try to Run. To check on the Workflow run log, we go to the <em><strong>Actions</strong></em> tab. If the run is sucessful there will be a ✅ and if the run failed there will be ❌. While the Workflow is still runing, 🟠 will appear.</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			
+		</div>
+		</article>
+</main>
+<footer>
+  <div style="display:flex"></div>
+  <div class="footer-info">
+  </div>
+</footer>
+
+
+</div>
+    </body>
+</html>

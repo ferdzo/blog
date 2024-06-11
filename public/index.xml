@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Andrej&#39;s blog</title>
+    <link>https://blog.ferdzo.xyz/</link>
+    <description>Recent content on Andrej&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.ferdzo.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Continous Deployment of software using Github Actions</title>
+      <link>https://blog.ferdzo.xyz/posts/2022-09-11-github_actions/</link>
+      <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.ferdzo.xyz/posts/2022-09-11-github_actions/</guid>
+      <description>A couple of months ago, I wanted to seamlessly update the code of my small web app running on my server. I was tired of using SFTP or copying code over SSH to the terminal editor every time I update something as small as the shade of a color. So I started looking for something more DevOps like. Some software for CI (Continuous Integration), CD(Continuous Delivery) and CD (Continuous Deployment). Mostly for Continuous Delivery because I don&amp;rsquo;t need integration considering I was doing the project alone.</description>
+    </item>
+    <item>
+      <title>Using Nginx as subdomain proxy for Weechat relay</title>
+      <link>https://blog.ferdzo.xyz/posts/2022-09-01-weechat_nginx/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.ferdzo.xyz/posts/2022-09-01-weechat_nginx/</guid>
+      <description>Weechat is an IRC client with relay options that enables us to use external applications as the frontend for Weechat. For example, Glowingbear or Weechat for Android is such application. The relay can be directly exposed to the internet, and you can also use a self-signed SSL certificate, but I don&amp;rsquo;t really like the idea of doing that and exposing a possibly vulnerable app to the internet.&#xA;So I stumbled upon the idea of using Nginx to proxy the internal port to a custom subdomain and open it up to the internet.</description>
+    </item>
+    <item>
+      <title>My first blog</title>
+      <link>https://blog.ferdzo.xyz/posts/2022-08-31-first_post/</link>
+      <pubDate>Wed, 31 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.ferdzo.xyz/posts/2022-08-31-first_post/</guid>
+      <description>This is my frist blog post, this blog is made with Jekyll and hosted on Github Pages. </description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://blog.ferdzo.xyz/</loc>
+    <lastmod>2022-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.ferdzo.xyz/posts/2022-09-11-github_actions/</loc>
+    <lastmod>2022-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.ferdzo.xyz/posts/</loc>
+    <lastmod>2022-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.ferdzo.xyz/posts/2022-09-01-weechat_nginx/</loc>
+    <lastmod>2022-09-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.ferdzo.xyz/posts/2022-08-31-first_post/</loc>
+    <lastmod>2022-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.ferdzo.xyz/categories/</loc>
+  </url><url>
+    <loc>https://blog.ferdzo.xyz/tags/</loc>
+  </url>
+</urlset>

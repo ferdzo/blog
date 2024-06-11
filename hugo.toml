@@ -1,0 +1,4 @@
+baseURL = 'https://blog.ferdzo.xyz'
+languageCode = 'en-us'
+title = "Andrej's blog"
+theme = 'archie'
