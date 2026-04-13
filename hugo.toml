@@ -13,3 +13,8 @@ name = "Twitter"
 icon = "twitter"
 url = "https://twitter.com/f3rdz0/"
 
+[[params.social]]
+name = "Website"
+icon = "globe"
+url = "https://ferdzo.xyz/"
+

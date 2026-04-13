@@ -5,10 +5,11 @@
     <a class="border"></a>
     {{- end -}}
   </div>
+  {{ with .Site.Copyright }}
   <div class="footer-info">
-    {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} | {{ end }} <a
-      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+    {{ dateFormat "2006" now }} {{ . }}
   </div>
+  {{ end }}
 </footer>
 {{ if not hugo.IsServer }}
 {{ template "_internal/google_analytics.html" . }}
